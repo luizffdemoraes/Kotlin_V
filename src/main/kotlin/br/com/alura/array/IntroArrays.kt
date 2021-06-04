@@ -25,14 +25,41 @@ fun main(){
      Utilizando estrutura de dados - Array de Inteiros
      - e preciso informar o tamanho do array no momento da criação
      - o indice de Array começa na posição 0
-     -
+     - Função para otimizar a criação de Array intArrayOf
      */
 
-    val idades = IntArray(4)
-    idades[0] = 25
-    idades[1] = 19
-    idades[2] = 33
-    idades[3] = 20
+//    Metodo Tradicional
+//    val idades = IntArray(5)
+//    idades[0] = 25
+//    idades[1] = 19
+//    idades[2] = 33
+//    idades[3] = 20
+//    idades[4] = 55
 
+    var idades: IntArray = intArrayOf(25, 19, 33, 20, 55, 40)
+
+    //Utilização de um for para iteração
+
+    var maiorIdadeArray = Int.MIN_VALUE
+    for (idade in idades){
+        if(idade > maiorIdadeArray){
+            maiorIdadeArray = idade
+        }
+    }
+    println("A maior idade do Array é $maiorIdadeArray")
+
+    /*
+    Outro metodo de iteração para descobrir a maior idade ao percorrer o Array
+    - Int.MAX_VALUE é uma contante garanque que começa com o maior valor
+     */
+
+    var menorIdade = Int.MAX_VALUE
+    idades.forEach { idade ->
+        if(idade < menorIdade){
+            menorIdade = idade
+        }
+    }
+
+    println("A menor idade do Array é $menorIdade")
 
 }
