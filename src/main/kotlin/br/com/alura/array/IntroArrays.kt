@@ -1,38 +1,51 @@
 package br.com.alura.array
 
+import br.com.alura.teste.testaAumentoSalario
 import br.com.alura.teste.testeMaiorEMenorIdade
 
 /*
-    Calcular 10% de aumento no salário de cada um dos funcionários
+    Range representa uma serie serve para iterar uma sequencia ou progressão
  */
-fun main(){
+fun main() {
 //    testeMaiorEMenorIdade()
+//    testaAumentoSalario()
 
-    //Criação de Array tipo Double
-    var salarios: DoubleArray = doubleArrayOf(1500.50, 2300.0, 5000.0, 8000.0, 10000.0)
-
-    val aumento = 1.1
-//    var indice = 0
-//    //For incrementar o indice manualmente
-//    for(salario in salarios){
-//        salarios[indice] = salario * aumento
-//        indice++
-//    }
-//    println("O valor dos salarios após aumentar 10% foi ${salarios.contentToString()}")
-
-    //For sem incrementar o indice manualmente
-    for(indice in salarios.indices){
-        salarios[indice] = salarios[indice] * aumento
+    val serie: IntRange = 1.rangeTo(10)
+    for (s in serie) {
+        print("$s ")
     }
-    //Exibir valores dentro do array contentToString
-    println("O valor dos salarios após aumentar 10% foi ${salarios.contentToString()}")
+    println()
 
-    //Função forEachIndexed para percorrer e realizar calculo de aumento
-
-    salarios.forEachIndexed { i, salario ->
-        salarios[i] = salario * aumento
+    //sintaxe shugar .. faz a mesma coisa que o metodo rangeTo ele inclui o ultimo numero da serie
+    var numerosPares = 0..100  step 2
+    for(numerosPar in numerosPares) {
+        print("$numerosPar ")
     }
 
-    println("O valor dos salarios após aumentar 10% foi ${salarios.contentToString()}")
+    println()
+
+    //outra forma para não incluir o 100 e utilizar o until ou colocar um numero abaixo no range
+    numerosPares = 2.until(100)  step 2
+    for(numerosPar in numerosPares) {
+        print("$numerosPar ")
+    }
+
+    println()
+    //terceira função para criar series de valores reversos
+    val numerosParesReversos = 100 downTo 0 step 2
+    numerosParesReversos.forEach { print("$it ") } //it representa cada um dos numeros em serie
+
+    println()
+    val intervalo = 1500.0..5000.0
+    val salario = 4000.0
+    //in função de verificar se esta dentro ele atua diferente conforme o contexto
+    if(salario in intervalo){
+        println("Está dentro do intervalo")
+    }else {
+        println("Não está dentro do intervalo")
+    }
+
+    val alfabeto = 'a'..'z'
+    val letra = 'k'
+    println(letra in alfabeto)
 }
-
