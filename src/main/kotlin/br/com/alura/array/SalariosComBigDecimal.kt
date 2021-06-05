@@ -3,6 +3,7 @@ package br.com.alura.array
 import br.com.alura.teste.bigDecimalArrayOf
 import br.com.alura.teste.calculaAumentoRelativo
 import java.math.BigDecimal
+import java.math.RoundingMode
 
 fun SalariosComBigDecimal() {
     /*
@@ -45,6 +46,18 @@ fun SalariosComBigDecimal() {
 
     val gastoInicial = salariosComAumento.somatoria()
     println(gastoInicial)
+
+
+    /*
+    Somatoria de todos os gastos com funcionários em um periodo de 6 meses
+     */
+    //fold ele recebe um valor inicial e torna em um valor unico semelhante ao reduce
+    val meses = 6.toBigDecimal()
+    val gastoTotal = salariosComAumento.fold(gastoInicial) { acumulador, salario ->
+        acumulador + (salario * meses).setScale(2, RoundingMode.UP)
+
+    }
+    println(gastoTotal)
 }
 
 /*
