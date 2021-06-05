@@ -2,50 +2,39 @@ package br.com.alura.array
 
 import br.com.alura.teste.testaAumentoSalario
 import br.com.alura.teste.testeMaiorEMenorIdade
+import br.com.alura.teste.testeRange
 
-/*
-    Range representa uma serie serve para iterar uma sequencia ou progressão
- */
+
 fun main() {
 //    testeMaiorEMenorIdade()
 //    testaAumentoSalario()
+//    testeRange()
 
-    val serie: IntRange = 1.rangeTo(10)
-    for (s in serie) {
-        print("$s ")
-    }
-    println()
+    val idades: IntArray = intArrayOf(10,12,18,33,40,67)
+    val maiorIdade = idades.maxOrNull()
+    println("Maior idade: $maiorIdade")
 
-    //sintaxe shugar .. faz a mesma coisa que o metodo rangeTo ele inclui o ultimo numero da serie
-    var numerosPares = 0..100  step 2
-    for(numerosPar in numerosPares) {
-        print("$numerosPar ")
-    }
+    val menorIdade = idades.minOrNull()
+    println("Menor idade: $menorIdade")
 
-    println()
+    //saber a media das idades
+    val media: Double = idades.average()
+    println("Média: $media")
 
-    //outra forma para não incluir o 100 e utilizar o until ou colocar um numero abaixo no range
-    numerosPares = 2.until(100)  step 2
-    for(numerosPar in numerosPares) {
-        print("$numerosPar ")
-    }
+    //verificar se todos são maior de idade
+    val todosMaiores = idades.all { it > 18 }
+    println("Todos maiores? $todosMaiores")
 
-    println()
-    //terceira função para criar series de valores reversos
-    val numerosParesReversos = 100 downTo 0 step 2
-    numerosParesReversos.forEach { print("$it ") } //it representa cada um dos numeros em serie
+    //verificar se pelo menos um e maior de idade
 
-    println()
-    val intervalo = 1500.0..5000.0
-    val salario = 4000.0
-    //in função de verificar se esta dentro ele atua diferente conforme o contexto
-    if(salario in intervalo){
-        println("Está dentro do intervalo")
-    }else {
-        println("Não está dentro do intervalo")
-    }
+    val existeMaior = idades.any {it >= 18 }
+    println("Algum aluno é maior de idade? $existeMaior")
 
-    val alfabeto = 'a'..'z'
-    val letra = 'k'
-    println(letra in alfabeto)
+    //filtrar os valores menores de 18 e trazer os maiores ou iguais
+    val maiores = idades.filter { it >= 18 }
+    println("Maiores: $maiores")
+
+    //retornar um valor especifico retorna o primeiro valor que satisfizer a condição
+    val busca = idades.find { it == 18}
+    println("Busca: $busca")
 }
