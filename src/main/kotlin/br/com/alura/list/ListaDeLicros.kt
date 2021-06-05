@@ -45,10 +45,26 @@ fun main() {
         )
     )
 
-    println(livros)
+    livros.imprimeComMarcadores()
 
     livros.remove(livro1)
 
-    println(livros)
+    livros.imprimeComMarcadores()
 
+
+
+}
+/*
+    Criação de uma “extension function” da lista de livros - “fun Mutable“.
+    “this”, que representa a nossa lista de livros
+    “joinToString” vai receber uma função onde vai ter cada elemento do livro
+    “(separador =)” para cada elemento de livro, eu vou ter um separador.
+    foi definido o separador para pular linha
+ */
+
+fun MutableList<Livro>.imprimeComMarcadores(){
+    val textoFormatado = this.joinToString(separator = "\n" ) {
+        " - ${it.titulo} de ${it.autor}"
+    }
+    println(" ### Lista de Livros ### \n$textoFormatado")
 }
