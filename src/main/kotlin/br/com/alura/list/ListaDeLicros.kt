@@ -51,8 +51,21 @@ fun main() {
 
     livros.imprimeComMarcadores()
 
+    /*
+        Função “sorted” - vai trazer a nossa lista ordenada a partir de algum critério.
+        Para usala o tipo “Livro” precisa ser um subtipo de “Comparable”.
+        temos que ir na nossa classe “Livro” e implementarmos/estendermos o tipo “Comparable”
 
 
+     */
+    val ordenadoAnoPublicacao: List<Livro> = livros.sorted()
+    ordenadoAnoPublicacao.imprimeComMarcadores()
+
+    //reotrna a mesma coisa da função sorted porem aqui definimos o parametro de ordenação
+    val ordenadoPorTitulo = livros.sortedBy { it.titulo }
+    ordenadoPorTitulo.imprimeComMarcadores()
+
+    livros.sortedBy { it.autor }.imprimeComMarcadores()
 }
 /*
     Criação de uma “extension function” da lista de livros - “fun Mutable“.
@@ -62,7 +75,7 @@ fun main() {
     foi definido o separador para pular linha
  */
 
-fun MutableList<Livro>.imprimeComMarcadores(){
+fun List<Livro>.imprimeComMarcadores(){
     val textoFormatado = this.joinToString(separator = "\n" ) {
         " - ${it.titulo} de ${it.autor}"
     }
