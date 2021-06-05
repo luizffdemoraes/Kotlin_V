@@ -2,6 +2,7 @@ package br.com.alura.array
 
 import br.com.alura.teste.bigDecimalArrayOf
 import br.com.alura.teste.calculaAumentoRelativo
+import br.com.alura.teste.somatoria
 import java.math.BigDecimal
 import java.math.RoundingMode
 
@@ -58,18 +59,40 @@ fun SalariosComBigDecimal() {
 
     }
     println(gastoTotal)
+
+
+    /*
+    média dos três maiores salários dos funcionários
+    -> sorted retorna uma lista ordenada do menor para o maior
+    -> take ela pega os primeiros valores
+    -> takeLast ela pega os ultimos valores ele não devolve um array sim um List
+    - precisamos converter com toTypedArray()
+
+    criaremos uma função de media
+     */
+
+//    val salariosOrdenados = salariosComAumento.sorted()
+//    val tresUltimosSalarios: Array<BigDecimal> = salariosOrdenados.takeLast(3).toTypedArray()
+//    val media = tresUltimosSalarios.media()
+
+    //Refatoração do codigo acima 
+    val media = salariosComAumento
+        .sorted()
+        .takeLast(3)
+        .toTypedArray()
+        .media()
+
+    println(media)
+
+    // Pegar a média dos menores salários
+    val mediaMenoresSalarios = salariosComAumento.sorted().take(3).toTypedArray().media()
+    println(mediaMenoresSalarios)
 }
 
-/*
-    Estamos fazendo uma extension function de Array de bigDecimal para chamar ela no formato
-    O Reduce ele recebe uma função com parametros um acumulador e um valor
-    -> o valor é o elemento do array que esta sendo enterado
-    -> o acumulador é a somatoria da interação
- */
-fun Array<BigDecimal>.somatoria(): BigDecimal {
-
-    //reduz o array a um unico valor
-    return this.reduce { acumulador, valor ->
-        acumulador + valor
+fun Array<BigDecimal>.media(): BigDecimal {
+    return if(this.isEmpty()){
+        BigDecimal.ZERO
+    } else {
+        this.somatoria() / this.size.toBigDecimal()
     }
 }
