@@ -66,6 +66,19 @@ fun main() {
     ordenadoPorTitulo.imprimeComMarcadores()
 
     livros.sortedBy { it.autor }.imprimeComMarcadores()
+
+    /*
+        Filtrar lista de livros
+        “.filter{}” ele vai esperar uma função com um método de filtro
+         A função “startsWith” vai esperar um parâmetro do tipo string
+         ela vai verificar se é string, se autor começa com determinada string.
+     */
+    val titulos: List<String> = listaDeLivros
+        .filter {it.autor.startsWith( "J")}
+        .sortedBy { it.anoPublicacao }
+        .map { it.titulo }
+
+    println(titulos)
 }
 /*
     Criação de uma “extension function” da lista de livros - “fun Mutable“.
@@ -73,6 +86,10 @@ fun main() {
     “joinToString” vai receber uma função onde vai ter cada elemento do livro
     “(separador =)” para cada elemento de livro, eu vou ter um separador.
     foi definido o separador para pular linha
+    -> A função “map”, é uma função que me diz como vou transformar a minha lista de livros.
+    Eu quero transformar a minha lista de livros em uma lista de títulos.
+    Então é só eu pegar o meu livro, “.titulo” e agora, ao invés de ter uma lista de livros,
+    eu vou ter uma lista de string com os títulos dos livros.
  */
 
 fun List<Livro>.imprimeComMarcadores(){
